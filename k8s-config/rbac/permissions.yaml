@@ -1,0 +1,32 @@
+#1 The Role 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: aiops-remediation-role
+rules:
+# Rule 1: Allow deleting Pods (for Memory leaks)
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "delete"]
+
+# Rule 2: Allow scaling Deployments (for High CPU)
+- apiGroups: ["apps"]
+  resources: ["deployments", "deployments/scale"]
+  verbs: ["get", "update", "patch"]
+
+---
+
+#2 The Binding 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: aiops-remediation-binding
+subjects:
+# We bind this role to the GROUP "aiops-group"
+- kind: Group
+  name: aiops-group
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: aiops-remediation-role
+  apiGroup: rbac.authorization.k8s.io
