@@ -20,11 +20,11 @@ provider "aws" {
 
 # Lookup your EXISTING Dev Cluster
 data "aws_eks_cluster" "dev_cluster" {
-  name = "eks-infra-cluster" # Replace this with your actual Cluster Name
+  name = "eks-infra-cluster" 
 }
 
 data "aws_eks_cluster_auth" "dev_cluster" {
-  name = "eks-infra-cluster" # Replace this with your actual Cluster Name
+  name = "eks-infra-cluster" 
 }
 
 provider "kubernetes" {

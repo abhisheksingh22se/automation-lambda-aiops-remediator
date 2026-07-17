@@ -4,17 +4,17 @@ module "aiops_remediation" {
 
     #Inputs
     env_name = "dev"
-    cluster_name = "eks-infra-cluster" # Must match your real cluster name
+    cluster_name = "eks-infra-cluster" 
     aws_region = "us-east-2"
 
     #Network
-    vpc_id = "vpc-08f1d469a600cdeaa" # Replace
+    vpc_id = "vpc-08f1d469a600cdeaa" 
     subnet_ids = [
         "subnet-028b0ecec490fa1e9",
         "subnet-05393186f1c0cc0d3",
         "subnet-073a86efe322ae7f3",
         "subnet-07c32a55e05be3af3"
-    ] # Replace
+    ] 
 
     #Tuning
     cpu_threshold = 90
@@ -23,7 +23,7 @@ module "aiops_remediation" {
 
 #2 Event Bus Module
 module "event_bus" {
-  source = "../../modules/event-bus"
+  source = "../../modules/event- bus"  
 
   target_lambda_arn = module.aiops_remediation.lambda_arn
   target_lambda_name = module.aiops_remediation.lambda_name
